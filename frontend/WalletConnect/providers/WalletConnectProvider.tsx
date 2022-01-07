@@ -33,10 +33,10 @@ const defaultState: State = Object.freeze({
 });
 
 export default function WalletConnectProvider({
-  children,
-  renderQrcodeModal: maybeRenderQrcodeModal, //scannable QR code
-  ...extras
-}: Partial<WalletConnectProviderProps>): JSX.Element {
+                                                children,
+                                                renderQrcodeModal: maybeRenderQrcodeModal, //scannable QR code
+                                                ...extras
+                                              }: Partial<WalletConnectProviderProps>): JSX.Element {
   const {
     error: walletServicesError,
     data: walletServices,
@@ -61,12 +61,12 @@ export default function WalletConnectProvider({
   const open = React.useCallback(
     async (uri: string, cb: unknown): Promise<unknown> => {
       if (Platform.OS === "android") {
-        const canOpenURL = await Linking.canOpenURL(uri);
-        if (!canOpenURL) {
-          // Redirect the user to download a wallet.
-          Linking.openURL("https://walletconnect.org/wallets");
-          throw new Error("No wallets found.");
-        }
+        // const canOpenURL = await Linking.canOpenURL(uri);
+        // if (!canOpenURL) {
+        //   // Redirect the user to download a wallet.
+        //   Linking.openURL("https://walletconnect.org/wallets");
+        //   throw new Error("No wallets found.");
+        // }
         await Linking.openURL(uri);
       }
       setState({
@@ -174,7 +174,7 @@ export default function WalletConnectProvider({
         // // Android does not inherently "know" the provider.
         // // (This information is obscured by the BottomSheet.)
         Platform.OS === "android") ||
-        !!maybeExistingWalletService;
+      !!maybeExistingWalletService;
 
       if (!isResumable) {
         await Promise.all([

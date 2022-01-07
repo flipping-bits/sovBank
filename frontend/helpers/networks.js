@@ -1,9 +1,21 @@
 export const networkConfigs = {
   "0x1": { currencySymbol: "ETH", blockExplorerUrl: "https://etherscan.io/" },
-  "0x3": { currencySymbol: "ETH", blockExplorerUrl: "https://ropsten.etherscan.io/" },
-  "0x4": { currencySymbol: "ETH", blockExplorerUrl: "https://kovan.etherscan.io/" },
-  "0x2a": { currencySymbol: "ETH", blockExplorerUrl: "https://rinkeby.etherscan.io/" },
-  "0x5": { currencySymbol: "ETH", blockExplorerUrl: "https://goerli.etherscan.io/" },
+  "0x3": {
+    currencySymbol: "ETH",
+    blockExplorerUrl: "https://ropsten.etherscan.io/",
+  },
+  "0x4": {
+    currencySymbol: "ETH",
+    blockExplorerUrl: "https://kovan.etherscan.io/",
+  },
+  "0x2a": {
+    currencySymbol: "ETH",
+    blockExplorerUrl: "https://rinkeby.etherscan.io/",
+  },
+  "0x5": {
+    currencySymbol: "ETH",
+    blockExplorerUrl: "https://goerli.etherscan.io/",
+  },
   "0x539": {
     chainName: "Local Chain",
     currencyName: "ETH",
@@ -50,8 +62,17 @@ export const networkConfigs = {
     rpcUrl: "https://rpc-mumbai.matic.today",
     blockExplorerUrl: "https://rpc-mumbai.matic.today",
   },
+  "0xa869": {
+    chainId: 43113,
+    chainName: "Avalanche Testnet",
+    currencyName: "AVAX",
+    currencySymbol: "FUJI",
+    rpcUrl: "https://api.avax-test.network/ext/bc/C/rpc",
+    blockExplorerUrl: "https://testnet.snowtrace.io/",
+  },
 };
 
-export const getNativeByChain = (chain) => networkConfigs[chain]?.currencySymbol || "NATIVE";
+export const getNativeByChain = (chain) =>
+    networkConfigs[chain]?.currencySymbol || "NATIVE";
 
 export const getExplorer = (chain) => networkConfigs[chain]?.blockExplorerUrl;

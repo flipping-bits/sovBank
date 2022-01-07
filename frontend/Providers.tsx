@@ -10,13 +10,17 @@ import { Platform } from "react-native";
 import Qrcode from "./Qrcode";
 import { expo } from "../app.json";
 import { MoralisDappProvider } from "./providers/MoralisDappProvider/MoralisDappProvider";
-import { ApplicationProvider, Layout, Text } from "@ui-kitten/components";
-import * as eva from "@eva-design/eva";
+// import { ApplicationProvider, Layout, Text } from "@ui-kitten/components";
+// import * as eva from "@eva-design/eva";
+import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 import {
   REACT_APP_MORALIS_APPLICATION_ID,
   REACT_APP_MORALIS_SERVER_URL,
 } from "@env";
-
+// const REACT_APP_MORALIS_APPLICATION_ID =
+// 	"2Fn11vzKOzfs5gR0Jhc6jwuq1YmW9wrSisVDElx6";
+// const REACT_APP_MORALIS_SERVER_URL =
+// 	"https://91d9lmaicb8y.usemoralis.com:2053/server";
 interface ProvidersProps {
   readonly children: JSX.Element;
 }
@@ -56,17 +60,26 @@ const walletConnectOptions: WalletConnectProviderProps = {
   // renderQrcodeModal: Qrcode,
 };
 
+const theme = {
+  ...DefaultTheme,
+  roundness: 2,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: "#3498db",
+    accent: "#f1c40f",
+  },
+};
+
 export const Providers = ({ children }: ProvidersProps) => {
   return (
     <WalletConnectProvider {...walletConnectOptions}>
       <MoralisProvider
         appId={appId}
         serverUrl={serverUrl}
-        environment={environment}>
+        environment={environment}
+      >
         <MoralisDappProvider>
-          <ApplicationProvider {...eva} theme={eva.light}>
-            {children}
-          </ApplicationProvider>
+          <PaperProvider theme={theme}>{children}</PaperProvider>
         </MoralisDappProvider>
       </MoralisProvider>
     </WalletConnectProvider>
